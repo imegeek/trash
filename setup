@@ -1,0 +1,54 @@
+#!/bin/bash
+
+architecture=$(dpkg --print-architecture)
+device=$(uname -o)
+SH=$(basename $SHELL)
+
+main()
+{
+
+    cp system/termux/trash.${arch} $PREFIX/bin
+    if [[ ${SH} == *"bash"* ]]
+    then
+    echo "alias rm=\"trash \$@\"" >> ~/.bashrc
+    elif [[ ${SH} == *"zsh"* ]]
+    then
+    echo "alias rm=\"trash \$@\"" >> ~/.zshrc
+    fi
+    echo "Installation complete.
+    New perimeters ::
+    rm --about
+    rm --clean
+    rm --find <name>
+    rm --recover <name>"
+}
+
+if [[ ${device} == *"Android"* ]]
+then
+case "$architecture" in
+    aarch64)
+        arch=aarch64
+        ;;
+    arm)
+        arch=arm
+        ;;
+    armhf)
+        arch=arm
+        ;;
+    esac
+
+    main
+else
+case "$architecture" in
+    amd64)
+        amd64
+        ;;
+    arm64)
+        arm64
+        ;;
+    esac
+
+    main
+fi
+
+
