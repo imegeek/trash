@@ -7,7 +7,7 @@ SH=$(basename $SHELL)
 main()
 {
 
-    cp system/termux/trash.${arch} $PREFIX/bin
+    cp system/termux/trash.${arch} $PREFIX/bin/trash
     if [[ ${SH} == *"bash"* ]]
     then
     echo "alias rm=\"trash \$@\"" >> ~/.bashrc
@@ -16,7 +16,7 @@ main()
     echo "alias rm=\"trash \$@\"" >> ~/.zshrc
     fi
     echo "Installation complete.
-    New perimeters ::
+    New parameters ::
     rm --about
     rm --clean
     rm --find <name>
