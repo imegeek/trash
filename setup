@@ -41,10 +41,10 @@ case "$architecture" in
 else
 case "$architecture" in
     amd64)
-        amd64
+        arch=amd64
         ;;
     arm64)
-        arm64
+        arch=arm64
         ;;
     esac
 
