@@ -7,7 +7,7 @@ SH=$(basename $SHELL)
 main()
 {
 
-    cp system/termux/trash.${arch} $PREFIX/bin/trash
+    $CP system/$DIR/trash.${arch} $PREFIX/bin/trash
     if [[ ${SH} == *"bash"* ]]
     then
     echo "alias rm=\"trash \$@\"" >> ~/.bashrc
@@ -25,6 +25,8 @@ main()
 
 if [[ ${device} == *"Android"* ]]
 then
+CP=cp
+DIR=termux
 case "$architecture" in
     aarch64)
         arch=aarch64
@@ -39,7 +41,10 @@ case "$architecture" in
 
     main
 else
-case "$architecture" in
+    CP="sudo cp"
+    DIR=linux
+    PREFIX=/usr
+    case "$architecture" in
     amd64)
         arch=amd64
         ;;
